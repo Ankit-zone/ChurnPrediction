@@ -138,13 +138,23 @@ with st.sidebar:
     model_file = st.file_uploader("Upload .pkl file", type=["pkl"], label_visibility="collapsed")
     if model_file:
         try:
-            st.session_state.model = pickle.load(model_file)
+            loaded = pickle.load(model_file)
         except Exception:
             try:
                 model_file.seek(0)
-                st.session_state.model = joblib.load(model_file)
+                loaded = joblib.load(model_file)
             except Exception as e:
-                st.error(f"Error: {e}")
+                st.error(f"Error loading file: {e}")
+                loaded = None
+
+        if loaded is not None:
+            # Handle both formats: plain model OR dict {"model": ..., "columns": ...}
+            if isinstance(loaded, dict):
+                st.session_state.model = loaded.get("model", None)
+                if st.session_state.model is None:
+                    st.error("❌ Dict has no 'model' key. Check how you saved the model.")
+            else:
+                st.session_state.model = loaded
 
     if st.session_state.model:
         st.success(f"✓ {type(st.session_state.model).__name__}")
