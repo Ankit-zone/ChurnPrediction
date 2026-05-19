@@ -58,9 +58,11 @@ st.markdown("""
     --muted:   #5a6a82;
 }
 html, body, [class*="css"] { font-family: 'Manrope', sans-serif; background: var(--bg) !important; color: var(--text); }
-section[data-testid="stSidebar"] { background: var(--surface) !important; border-right: 1px solid var(--border); }
+section[data-testid="stSidebar"] { background: var(--surface) !important; border-right: 1px solid var(--border); min-width: 320px !important; }
 section[data-testid="stSidebar"] * { color: var(--text) !important; }
-#MainMenu, footer, header { visibility: hidden; }
+#MainMenu, footer { visibility: hidden; }
+header { visibility: visible !important; }
+button[data-testid="collapsedControl"] { display: flex !important; visibility: visible !important; background: var(--accent) !important; color: #080c14 !important; border-radius: 50% !important; }
 .main .block-container { padding: 1.5rem 2rem; max-width: 100%; }
 
 .topbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
