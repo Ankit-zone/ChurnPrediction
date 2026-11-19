@@ -25,7 +25,6 @@ FEATURE_COLUMNS = [
     'PaymentMethod_Bank transfer (automatic)', 'PaymentMethod_Credit card (automatic)',
     'PaymentMethod_Electronic check', 'PaymentMethod_Mailed check',
     # Duplicates present in your training data — kept to match model exactly
-    'MultipleLines_No', 'MultipleLines_No phone service', 'MultipleLines_Yes',
 ]
 
 # ─────────────────────────────────────────────────────────────────────
