@@ -250,6 +250,8 @@ def preprocess(inp):
     # (including the 3 duplicate MultipleLines columns at the end)
     df = pd.DataFrame([base])
     df = df.reindex(columns=FEATURE_COLUMNS, fill_value=0)
+    if not df.columns.is_unique:
+    raise ValueError("Duplicate feature columns detected!")
     return df
 
 # ─────────────────────────────────────────────────────────────────────
